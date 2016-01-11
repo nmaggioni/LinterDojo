@@ -14,7 +14,7 @@ space_before_conditional: true
 space_after_anon_function: false
 unescape_strings: false
 jslint_happy: false
-end_with_newline: false
+end_with_newline: true
 wrap_line_length: false
 indent_inner_html: true
 comma_first: false

@@ -6,9 +6,15 @@ jshint = require('jshint').JSHINT
 jsbeautify = require('js-beautify').js
 htmlbeautify = require('js-beautify').html
 cssbeautify = require('js-beautify').css
+Checker = require 'jscs'
+checker = new Checker()
 
 jshintOptions = cson.load "config/JSHint.cson"
 beautifierOptions = cson.load "config/JS-Beautify.cson"
+jscsOptions = cson.load "config/JSCS.cson"
+
+checker.registerDefaultRules()
+checker.configure jscsOptions
 
 knownOptions = {
     string: ['out', 'source'],
@@ -37,6 +43,17 @@ parseOptions = (options) ->
     else
         throw Error "Nessun file sorgente specificato. " +
         "Usa l\'opzione {-s|--source} per indicarlo."
+writeToOutputFile = (content) ->
+    fs.writeFileSync @options.out, content
+    console.log "[JSBeautifier]\t\t\tOutput scritto in: " + @options.out
+
+askConfirmation = ->
+    readlineSync.question "[JSBeautifier]\t\t\tIl file di output esiste già, sovrascriverlo? [Sì/No] "
+
+looks_like_html = (source) ->
+    trimmed = source.replace(new RegExp("^[ \t\n\r]+", ''))
+    comment_mark = '<' + '!-' + '-'
+    return (trimmed && (trimmed.substring(0, 1) == '<' && trimmed.substring(0, 4) != comment_mark))
 
 hint = ->
     if (@options.source.endsWith ".js") && (!looks_like_html @options.source)
@@ -44,26 +61,26 @@ hint = ->
         if jshint.errors.length > 0
             for error in jshint.errors
                 do (error) ->
-                    console.log "[JSHint " + error.id + "] " +
-                    "Linea " + error.line + ", Colonna " + error.character + ": " +
-                    error.code + " - " + error.reason
+                    console.log "[JSHint " + error.id + " - " + error.code +
+                    "]\t\t" + "Linea " + error.line + ", Colonna " +
+                    error.character + ": " + error.reason
+            #process.exit 1
+        else
+            console.log "[JSHint]\t\t\tNessun problema rilevato."
+    else
+        console.log "[JSHint]\t\t\tSalto file non puramente JavaScript."
+
+checkStyle = ->
+    if (@options.source.endsWith ".js") && (!looks_like_html @options.source)
+        results = checker.checkString sourceFile
+        if results.getErrorList().length > 0
+            for error in results.getErrorList()
+                do (error) ->
+                    console.log "[JSCS " + error.rule + "]\t" + "Linea " +
+                    error.line + ", Colonna " + error.column + ": " + error.message
             process.exit 1
         else
-            console.log "[JSHint] Nessun problema rilevato."
-    else
-        console.log "[JSHint] Salto file non puramente JavaScript."
-
-writeToOutputFile = (content) ->
-    fs.writeFileSync @options.out, content
-    console.log "[JSBeautifier] Output scritto in: " + @options.out
-
-askConfirmation = ->
-    readlineSync.question "[JSBeautifier] Il file di output esiste già, sovrascriverlo? [Sì/No] "
-
-looks_like_html = (source) ->
-    trimmed = source.replace(new RegExp("^[ \t\n\r]+", ''))
-    comment_mark = '<' + '!-' + '-'
-    return (trimmed && (trimmed.substring(0, 1) == '<' && trimmed.substring(0, 4) != comment_mark))
+            console.log "[JSCS]\t\t\t\tNessun problema rilevato."
 
 beautify = ->
     if (@options.source.endsWith ".css") && (!looks_like_html @options.source)
@@ -75,9 +92,9 @@ beautify = ->
 
     if beautifiedSourceFile == sourceFile
         if looks_like_html sourceFile
-            console.log "[HTMLBeautifier] Nessuna modifica da apportare."
+            console.log "[HTMLBeautifier]\t\t\tNessuna modifica da apportare."
         else
-            console.log "[JSBeautifier] Nessuna modifica da apportare."
+            console.log "[JSBeautifier]\t\t\tNessuna modifica da apportare."
         process.exit 0
 
     if fileExists @options.out
@@ -98,4 +115,5 @@ beautify = ->
 module.exports.lintFile = lintFile = (options) ->
     parseOptions options
     hint()
+    checkStyle()
     beautify()
