@@ -17,4 +17,10 @@ Un linter per HTML e JavaScript personalizzato per il CoderDojo fiorentino.
 Navigare nella cartella dove si è clonata la repo ed invocare `gulp -s nomeFile.js` oppure `gulp -s nomeFile.html`.
 Sono inclusi dei file di test nell'omonima cartella.
 
+## Configurazione
+Le configurazioni di [js-beautify][2] e [jshint][3] si trovano nella cartella `config`. Seguono il formato [CSON][4].
+
 [1]: https://nodejs.org/
+[2]: https://github.com/beautify-web/js-beautify#options
+[3]: http://jshint.com/docs/options/
+[4]: https://github.com/bevry/cson#what-is-cson
