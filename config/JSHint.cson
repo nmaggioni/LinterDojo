@@ -1,0 +1,8 @@
+# http://jshint.com/docs/options/
+
+bitwise: true
+curly: true
+eqeqeq: true
+strict: true
+undef: true
+unused: true

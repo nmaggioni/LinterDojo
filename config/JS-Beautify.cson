@@ -1,0 +1,21 @@
+# https://github.com/beautify-web/js-beautify#options
+
+indent_size: 4
+indent_char: " "
+indent_with_tabs: true
+max_preserve_newlines: 5
+preserve_newlines: true
+keep_array_indentation: false
+keep_function_indentation: false
+break_chained_methods: false
+indent_scripts: true
+brace_style: 'collapse'
+space_before_conditional: true
+space_after_anon_function: false
+unescape_strings: false
+jslint_happy: false
+end_with_newline: false
+wrap_line_length: false
+indent_inner_html: true
+comma_first: false
+e4x: false
