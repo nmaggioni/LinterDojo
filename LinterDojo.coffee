@@ -5,6 +5,7 @@ fs = require 'fs'
 jshint = require('jshint').JSHINT
 jsbeautify = require('js-beautify').js
 htmlbeautify = require('js-beautify').html
+cssbeautify = require('js-beautify').css
 
 jshintOptions = cson.load "config/JSHint.cson"
 beautifierOptions = cson.load "config/JS-Beautify.cson"
@@ -38,7 +39,7 @@ parseOptions = (options) ->
         "Usa l\'opzione {-s|--source} per indicarlo."
 
 hint = ->
-    if @options.source.endsWith ".js" || looks_like_html @options.source
+    if (@options.source.endsWith ".js") && (!looks_like_html @options.source)
         jshint(sourceFile, jshintOptions, {})
         if jshint.errors.length > 0
             for error in jshint.errors
@@ -65,7 +66,9 @@ looks_like_html = (source) ->
     return (trimmed && (trimmed.substring(0, 1) == '<' && trimmed.substring(0, 4) != comment_mark))
 
 beautify = ->
-    if looks_like_html sourceFile
+    if (@options.source.endsWith ".css") && (!looks_like_html @options.source)
+        beautifiedSourceFile = cssbeautify sourceFile, beautifierOptions
+    else if looks_like_html sourceFile
         beautifiedSourceFile = htmlbeautify sourceFile, beautifierOptions
     else
         beautifiedSourceFile = jsbeautify sourceFile, beautifierOptions
