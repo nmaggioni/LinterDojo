@@ -2,7 +2,7 @@
 Un linter per HTML e JavaScript personalizzato per il CoderDojo fiorentino.
 
 ## Installazione
-+ Assicurarsi di avere installato [NodeJS][1].
++ Assicurarsi di avere installato [NodeJS][1] e [Gulp][6].
 + Navigare nella cartella dove si è clonata la repo ed invocare `npm install` per installare i pacchetti necessari.
 
 ## Utilizzo
@@ -25,3 +25,4 @@ Le configurazioni di [js-beautify][2], [jshint][3] e [JSCS][5] si trovano nella 
 [3]: http://jshint.com/docs/options/
 [4]: https://github.com/bevry/cson#what-is-cson
 [5]: http://jscs.info/rules
+[6]: http://gulpjs.com/
