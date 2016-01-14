@@ -61,10 +61,13 @@ hint = ->
         if jshint.errors.length > 0
             for error in jshint.errors
                 do (error) ->
-                    console.log "[JSHint " + error.id + " - " + error.code +
-                    "]\t\t" + "Linea " + error.line + ", Colonna " +
-                    error.character + ": " + error.reason
-            #process.exit 1
+                    if error
+                        console.log "[JSHint " + error.id + " - " + error.code +
+                        "]\t\t" + "Linea " + error.line + ", Colonna " +
+                        error.character + ": " + error.reason
+                    else
+                        console.log "[JSHint] Il processo ha incontrato un problema."
+                        process.exit 1
         else
             console.log "[JSHint]\t\t\tNessun problema rilevato."
     else
