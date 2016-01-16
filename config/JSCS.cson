@@ -76,7 +76,7 @@ requireSpaceBeforeBinaryOperators: [
 ]
 requireSpaceAfterBinaryOperators: true
 requireSpacesInConditionalExpression: true
-requireSpaceBeforeBlockStatements: true
+requireSpaceBeforeBlockStatements: false
 requireSpacesInForStatement: true
 requireLineFeedAtFileEnd: true
 requireSpacesInFunctionExpression:

@@ -3,6 +3,8 @@
 bitwise: true
 curly: true
 eqeqeq: true
-strict: true
+strict: "global"
 undef: true
 unused: true
+globals:
+  document: true

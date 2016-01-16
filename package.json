@@ -1,6 +1,6 @@
 {
   "name": "linterdojo",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Un linter per HTML e JavaScript personalizzato per il CoderDojo fiorentino.",
   "main": "LinterDojo.js",
   "author": "Niccolò Maggioni",
@@ -15,7 +15,7 @@
     "gulp": "^3.9.0",
     "js-beautify": "^1.5.10",
     "jscs": "^2.8.0",
-    "jshint": "^2.9.1-rc3",
+    "jshint": "^2.9.1",
     "minimist": "^1.2.0",
     "readline-sync": "^1.2.22"
   }
