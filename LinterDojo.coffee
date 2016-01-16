@@ -117,6 +117,7 @@ beautify = ->
 
 module.exports.lintFile = lintFile = (options) ->
     parseOptions options
-    hint()
-    checkStyle()
+    if !options.beautify?
+        hint()
+        checkStyle()
     beautify()

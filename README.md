@@ -7,11 +7,12 @@ Un linter per HTML e JavaScript personalizzato per il CoderDojo fiorentino.
 
 ## Utilizzo
 ### Opzioni
-| Opzione       | Valore      | Significato                                                                                   |
-|---------------|-------------|-----------------------------------------------------------------------------------------------|
-| -s \| --source | **Stringa** | File sorgente da validare in input.                                                           |
-| -o \| --out    | **Stringa** | File in cui copiare il sorgente formattato. Se non specificato, sovrascrive il file di input. |
-| -f \| --force  | *Nessuno*   | Se specificata, non verrà chiesta conferma prima di sovrascrivere il file di output.          |
+| Opzione          | Valore      | Significato                                                                                   |
+|------------------|-------------|-----------------------------------------------------------------------------------------------|
+| -s \| --source   | **Stringa** | File sorgente da validare in input.                                                           |
+| -o \| --out      | **Stringa** | File in cui copiare il sorgente formattato. Se non specificato, sovrascrive il file di input. |
+| -f \| --force    | *Nessuno*   | Se specificata, non verrà chiesta conferma prima di sovrascrivere il file di output.          |
+| -b \| --beautify | *Nessuno*   | Se specificata, verrà eseguita solo la riformattazione del codice (senza validarlo).          |
 
 ## Linting
 Navigare nella cartella dove si è clonata la repo ed invocare `gulp -s nomeFile.js` oppure `gulp -s nomeFile.html`.
