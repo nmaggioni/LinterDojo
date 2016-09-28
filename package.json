@@ -17,6 +17,12 @@
     "jscs": "^2.8.0",
     "jshint": "^2.9.1",
     "minimist": "^1.2.0",
-    "readline-sync": "^1.2.22"
-  }
+    "readline-sync": "^1.2.22",
+    "snyk": "^1.19.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
