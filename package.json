@@ -18,7 +18,7 @@
     "jshint": "^2.9.1",
     "minimist": "^1.2.0",
     "readline-sync": "^1.2.22",
-    "snyk": "^1.25.2"
+    "snyk": "^1.28.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
