@@ -9,6 +9,9 @@ ignore:
     - jshint > shelljs:
         reason: None given
         expires: '2017-05-12T11:02:28.428Z'
+    - jshint > shelljs:
+        reason: None given
+        expires: '2017-06-22T07:36:00.906Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
